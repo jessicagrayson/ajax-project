@@ -47,3 +47,11 @@ h2 {
   padding-left: 0.7rem;
   font-size: 0.875rem;
 }
+
+/* desktop media screen styles */
+@media screen and (min-width: 767px) {
+  #query {
+    width: 22rem;
+    margin-right: 1rem;
+  }
+}
