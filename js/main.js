@@ -1,6 +1,9 @@
 // dom queries
-// const $search = document.querySelector('#query');
+const $searchBar = document.querySelector('#query');
 // const $icon = document.querySelector('.icon');
+// for testing only
+const $hersheyButton = document.querySelector('.hershey');
+const $api = 'https://openlibrary.org/search.json?q=';
 
 // handles search query from open library API
 function getBookData() {
@@ -21,3 +24,13 @@ function getBookData() {
 }
 
 getBookData();
+
+// function that gathers search terms from search bar
+function hersheyFunc(event) {
+  const searchTerms = $searchBar.value;
+  // DELETE THIS ALERT LATER, FOR TESTING
+  const hershey = $api + searchTerms;
+  alert(hershey);
+}
+
+$hersheyButton.addEventListener('click', hersheyFunc);
