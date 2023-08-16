@@ -9,6 +9,10 @@ body {
   align-items: center;
 }
 
+h4 {
+  font-weight: 600;
+}
+
 .nav {
   background-color: #0a9396;
   color: #ffff;
@@ -27,4 +31,19 @@ h2 {
 .search-row {
   justify-content: center;
   align-items: center;
+}
+
+.search-column {
+  display: flex;
+  justify-content: center;
+}
+
+#query {
+  width: 18rem;
+  height: 1.55rem;
+  border: none;
+  border-radius: 0.4rem;
+  margin-top: 5.5rem;
+  padding-left: 0.7rem;
+  font-size: 0.875rem;
 }
