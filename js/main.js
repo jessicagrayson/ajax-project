@@ -1,9 +1,8 @@
 // dom queries
 const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
-// const $icon = document.querySelector('.icon');
-// for testing only
-const $hersheyButton = document.querySelector('.hershey');
+const limit = '&limit=10&offset=0';
+const $icon = document.querySelector('.icon');
 
 // handles search query from open library API
 function getBookData(event) {
@@ -13,7 +12,7 @@ function getBookData(event) {
   let searchTerms = $searchBar.value;
   const splitTerms = searchTerms.split(' ');
   searchTerms = splitTerms.join('+');
-  const requestUrl = $apiEndpoint + searchTerms;
+  const requestUrl = $apiEndpoint + searchTerms + limit;
   alert(requestUrl);
   // creates new xhr object
   const xhr = new XMLHttpRequest();
@@ -31,5 +30,5 @@ function getBookData(event) {
   // sends request to the server at the URL specified in xhr.open()
   xhr.send();
 }
-// click event for test button - submits form
-$hersheyButton.addEventListener('click', getBookData);
+// click event for magnifying glass icon - submits form
+$icon.addEventListener('click', getBookData);

@@ -48,10 +48,54 @@ h2 {
   font-size: 0.875rem;
 }
 
-/* desktop media screen styles */
-@media screen and (min-width: 767px) {
-  #query {
-    width: 22rem;
-    margin-right: 1rem;
+#query:focus {
+  outline: none;
+  border: 0.15rem solid #0a9396;
+}
+
+/* entries styles */
+.entries-table {
+  background-color: #ebf2fa;
+}
+
+.title,
+.author {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.cover-img {
+  width: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
+.entries {
+  width: 100%;
+  margin-top: 5rem;
+
+  .entry:hover {
+    color: #0a9396;
+    transition: color 0.2s ease-in;
+  }
+
+  .arrow {
+    font-size: 2rem;
+    color: #0a9396;
+  }
+
+  .arrow:hover {
+    color: #ebf2fa;
+    transition: color 0.2s ease-in;
+  }
+
+  /* desktop media screen styles */
+  @media screen and (min-width: 767px) {
+    #query {
+      width: 22rem;
+      margin-right: 1rem;
+    }
   }
 }
