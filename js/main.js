@@ -7,12 +7,14 @@ const $hersheyButton = document.querySelector('.hershey');
 
 // handles search query from open library API
 function getBookData(event) {
+  // prevents default form reset behavior
   event.preventDefault();
-  const searchTerms = $searchBar.value;
+  // gets string from search bar, splits it and adds + between each character and concatenates w/ api endpoint
+  let searchTerms = $searchBar.value;
+  const splitTerms = searchTerms.split(' ');
+  searchTerms = splitTerms.join('+');
   const requestUrl = $apiEndpoint + searchTerms;
-  // DELETE THIS ALERT LATER, FOR TESTING
-  // alert(searchTerms);
-  // alert(requestUrl);
+  alert(requestUrl);
   // creates new xhr object
   const xhr = new XMLHttpRequest();
   // sets request method and URL
