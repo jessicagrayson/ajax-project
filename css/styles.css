@@ -56,6 +56,7 @@ h2 {
 /* entries styles */
 .entries-table {
   background-color: #ebf2fa;
+  border-radius: 1%;
 }
 
 .title,
@@ -81,12 +82,14 @@ h2 {
     transition: color 0.2s ease-in;
   }
 
-  .arrow {
+  .back-arrow,
+  .forward-arrow {
     font-size: 2rem;
     color: #0a9396;
   }
 
-  .arrow:hover {
+  .back-arrow:hover,
+  .forward-arrow:hover {
     color: #ebf2fa;
     transition: color 0.2s ease-in;
   }
