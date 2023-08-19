@@ -1,7 +1,7 @@
 // dom queries
 const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
-const limit = '&limit=10&offset=0';
+const limit = '&limit=20&offset=0';
 const $icon = document.querySelector('.icon');
 
 // handles search query from open library API
@@ -23,10 +23,25 @@ function getBookData(event) {
   xhr.responseType = 'json';
   // executes function when response is eventually loaded
   xhr.addEventListener('load', function () {
-    // DELETE BELOW CONSOLE LOGS BEFORE PR
-    // console.log('status:', xhr.status);
-    // console.log('response:', xhr.response);
+    // handles API response
+    const response = xhr.response;
+    // console.log('response:', response);
+    // access and use key-value pairs
+    const results = response.docs;
+
+    results.forEach(function (book) {
+      // const title = book.title;
+      // const author = book.author_name;
+      // const cover = book.cover_i;
+      // console.log('title:', title);
+      // console.log('author', author);
+      // console.log('cover', cover);
+    });
   });
+  xhr.addEventListener('error', function (error) {
+    console.error('Error fetching data:', error);
+  });
+
   // sends request to the server at the URL specified in xhr.open()
   xhr.send();
 }
