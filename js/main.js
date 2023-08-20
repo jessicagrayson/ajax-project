@@ -13,19 +13,18 @@ const $entriesTable = document.querySelector('.entries-table');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
 
-// array to store current search results
+// array to store search results
 const currentResults = [];
 
-// handles search query from open library API
+// function handles search query from open library API
 function getBookData(event) {
   // prevents default form reset behavior
   event.preventDefault();
-  // gets string from search bar, splits it and adds + between each character and concatenates w/ api endpoint
+  // gets string from search bar, splits it, adds '+' between each character and concatenates w/ api endpoint
   let searchTerms = $searchBar.value;
   const splitTerms = searchTerms.split(' ');
   searchTerms = splitTerms.join('+');
   const requestUrl = $apiEndpoint + searchTerms + limit;
-  alert(requestUrl);
   // creates new xhr object
   const xhr = new XMLHttpRequest();
   // sets request method and URL
@@ -38,8 +37,7 @@ function getBookData(event) {
     const response = xhr.response;
     // access and use key-value pairs
     const results = response.docs;
-    // console.log(results);
-    //  removes existing entries from the table
+    //  removes existing entries from the table before next search
     const existingEntries = document.querySelectorAll('.results-row');
     existingEntries.forEach(function (entry) {
       entry.remove();
@@ -51,7 +49,7 @@ function getBookData(event) {
       const author = book.author_name;
       const cover = book.cover_i;
       const hersheyUrl = searchUrl + cover + urlSuffix;
-
+      // conditional statement filters out incomplete search results and behaves normally for results with all info present
       if (cover === undefined || title === undefined || author === undefined) {
         // eslint-disable-next-line no-console
         console.log('hello world');
@@ -67,15 +65,15 @@ function getBookData(event) {
         $tableImg.setAttribute('src', hersheyUrl);
         $tableImg.className = 'table-image cover-image';
 
-        // assigning appropriate values
+        // assigns appropriate values
         $tableTitle.textContent = book.title;
         $tableAuthor.textContent = book.author_name;
 
         // appends DOM elements
         $entriesTable.appendChild($tableRow);
         $tableRow.appendChild($tableImg);
-        $tableRow.appendChild($tableAuthor);
         $tableRow.appendChild($tableTitle);
+        $tableRow.appendChild($tableAuthor);
 
         // creates specific condition
 
@@ -102,6 +100,14 @@ function getBookData(event) {
 $icon.addEventListener('click', function () {
   toggleTable(event);
   getBookData(event);
+});
+
+// click event for 'Enter' key - submits form and toggles search results table
+document.addEventListener('keypress', function () {
+  if (event.key === 'Enter') {
+    toggleTable(event);
+    getBookData(event);
+  }
 });
 
 // function to conditionally hide or display entries table
