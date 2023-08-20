@@ -49,6 +49,7 @@ function getBookData(event) {
     results.forEach(function (book) {
       const title = book.title;
       const author = book.author_name;
+
       const cover = book.cover_i;
       const hersheyUrl = searchUrl + cover + urlSuffix;
 
@@ -65,13 +66,16 @@ function getBookData(event) {
 
       // assigning appropriate values
       $tableTitle.textContent = book.title;
-      $tableAuthor.textContent = book.author;
+      $tableAuthor.textContent = book.author_name;
 
       // appends DOM elements
       $entriesTable.appendChild($tableRow);
       $tableRow.appendChild($tableImg);
-      $tableRow.appendChild($tableTitle);
       $tableRow.appendChild($tableAuthor);
+      $tableRow.appendChild($tableTitle);
+
+      // creates specific condition
+
       // adds current results to array
       currentResults.push({
         title,
