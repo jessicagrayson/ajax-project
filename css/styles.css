@@ -53,7 +53,7 @@ h2 {
   border: 0.15rem solid #0a9396;
 }
 
-/* entries styles */
+/* search styles */
 .entries-table {
   background-color: #ebf2fa;
   border-radius: 1%;
@@ -65,8 +65,8 @@ h2 {
   font-weight: 300;
 }
 
-.cover-img {
-  width: 50%;
+.cover-image {
+  width: 20%;
 }
 
 .hidden {

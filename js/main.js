@@ -10,7 +10,7 @@ const $entriesTable = document.querySelector('.entries-table');
 // const $formView = document.querySelector('[data-view=entry-form]');
 // const $form = document.querySelector('#form');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
-const urlSuffix = '-L.jpg';
+const urlSuffix = '.jpg';
 
 // array to store current search results
 const currentResults = [];
@@ -37,7 +37,7 @@ function getBookData(event) {
     const response = xhr.response;
     // access and use key-value pairs
     const results = response.docs;
-
+    // console.log(results);
     //  removes existing entries from the table
     const existingEntries = document.querySelectorAll('.results-row');
     existingEntries.forEach(function (entry) {
@@ -51,13 +51,6 @@ function getBookData(event) {
       const cover = book.cover_i;
       const hersheyUrl = searchUrl + cover + urlSuffix;
 
-      // add current book details to CurrentResults array
-      currentResults.push({
-        title,
-        author,
-        hersheyUrl
-      });
-
       // creates elements for DOM tree
       const $tableRow = document.createElement('tr');
       $tableRow.className = 'results-row';
@@ -67,7 +60,7 @@ function getBookData(event) {
       $tableAuthor.className = 'author';
       const $tableImg = document.createElement('img');
       $tableImg.setAttribute('src', hersheyUrl);
-      $tableImg.className = 'table-image';
+      $tableImg.className = 'table-image cover-image';
 
       // assigning appropriate values
       $tableTitle.textContent = book.title;
@@ -75,11 +68,18 @@ function getBookData(event) {
 
       // appends DOM elements
       $entriesTable.appendChild($tableRow);
+      $tableRow.appendChild($tableImg);
       $tableRow.appendChild($tableTitle);
       $tableRow.appendChild($tableAuthor);
-      $tableRow.appendChild($tableImg);
+      // adds current results to array
+      currentResults.push({
+        title,
+        author,
+        hersheyUrl
+      });
     });
   });
+
   // notifies user of errors when they occur
   xhr.addEventListener('error', function (error) {
     console.error('Error fetching data:', error);
