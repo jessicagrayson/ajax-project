@@ -49,39 +49,43 @@ function getBookData(event) {
     results.forEach(function (book) {
       const title = book.title;
       const author = book.author_name;
-
       const cover = book.cover_i;
       const hersheyUrl = searchUrl + cover + urlSuffix;
 
-      // creates elements for DOM tree
-      const $tableRow = document.createElement('tr');
-      $tableRow.className = 'results-row';
-      const $tableTitle = document.createElement('td');
-      $tableTitle.className = 'title';
-      const $tableAuthor = document.createElement('td');
-      $tableAuthor.className = 'author';
-      const $tableImg = document.createElement('img');
-      $tableImg.setAttribute('src', hersheyUrl);
-      $tableImg.className = 'table-image cover-image';
+      if (cover === undefined || title === undefined || author === undefined) {
+        // eslint-disable-next-line no-console
+        console.log('hello world');
+      } else {
+        // creates elements for DOM tree
+        const $tableRow = document.createElement('tr');
+        $tableRow.className = 'results-row';
+        const $tableTitle = document.createElement('td');
+        $tableTitle.className = 'title';
+        const $tableAuthor = document.createElement('td');
+        $tableAuthor.className = 'author';
+        const $tableImg = document.createElement('img');
+        $tableImg.setAttribute('src', hersheyUrl);
+        $tableImg.className = 'table-image cover-image';
 
-      // assigning appropriate values
-      $tableTitle.textContent = book.title;
-      $tableAuthor.textContent = book.author_name;
+        // assigning appropriate values
+        $tableTitle.textContent = book.title;
+        $tableAuthor.textContent = book.author_name;
 
-      // appends DOM elements
-      $entriesTable.appendChild($tableRow);
-      $tableRow.appendChild($tableImg);
-      $tableRow.appendChild($tableAuthor);
-      $tableRow.appendChild($tableTitle);
+        // appends DOM elements
+        $entriesTable.appendChild($tableRow);
+        $tableRow.appendChild($tableImg);
+        $tableRow.appendChild($tableAuthor);
+        $tableRow.appendChild($tableTitle);
 
-      // creates specific condition
+        // creates specific condition
 
-      // adds current results to array
-      currentResults.push({
-        title,
-        author,
-        hersheyUrl
-      });
+        // adds current results to array
+        currentResults.push({
+          title,
+          author,
+          hersheyUrl
+        });
+      }
     });
   });
 
