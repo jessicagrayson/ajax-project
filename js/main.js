@@ -5,6 +5,7 @@ const limit = '&limit=10&offset=0';
 const $icon = document.querySelector('.icon');
 // const $fwrdArrow = document.querySelector('.forward-arrow');
 const $backArrow = document.querySelector('.back-arrow');
+const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
 // const $entryView = document.querySelector('[data-view=entries]');
 // const $formView = document.querySelector('[data-view=entry-form]');
@@ -99,12 +100,15 @@ $icon.addEventListener('click', function () {
 function toggleTable(event) {
   $entriesTable.classList.remove('hidden');
   $searchBar.classList.add('hidden');
+  $icon.classList.add('hidden');
 }
 
 // function that reverts to search bar view
 function toggleSearch(event) {
   $searchBar.classList.remove('hidden');
   $entriesTable.classList.add('hidden');
+  // Not able to hide/display font awesome using DOM?
+  $arrowContainer.classList.add('hidden');
   $icon.classList.add('hidden');
 }
 

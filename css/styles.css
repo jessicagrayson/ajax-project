@@ -66,7 +66,7 @@ h2 {
 }
 
 .cover-image {
-  width: 20%;
+  width: 50%;
 }
 
 .hidden {
@@ -76,29 +76,36 @@ h2 {
 .entries {
   width: 100%;
   margin-top: 5rem;
+}
 
-  .entry:hover {
-    color: #0a9396;
-    transition: color 0.2s ease-in;
-  }
+.results-row:hover {
+  color: #0a9396;
+  transition: color 0.2s ease-in;
 
-  .back-arrow,
-  .forward-arrow {
-    font-size: 2rem;
-    color: #0a9396;
-  }
+  /* later add a border/box-shadow when an option is "clicked" or selected */
+}
 
-  .back-arrow:hover,
-  .forward-arrow:hover {
-    color: #ebf2fa;
-    transition: color 0.2s ease-in;
-  }
+.arrow-container {
+  display: flex;
+  justify-content: space-between;
+}
 
-  /* desktop media screen styles */
-  @media screen and (min-width: 767px) {
-    #query {
-      width: 22rem;
-      margin-right: 1rem;
-    }
+.back-arrow,
+.forward-arrow {
+  font-size: 2rem;
+  color: #0a9396;
+}
+
+.back-arrow:hover,
+.forward-arrow:hover {
+  color: #ebf2fa;
+  transition: color 0.2s ease-in;
+}
+
+/* desktop media screen styles */
+@media screen and (min-width: 767px) {
+  #query {
+    width: 22rem;
+    margin-right: 1rem;
   }
 }
