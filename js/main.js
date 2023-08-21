@@ -3,13 +3,9 @@ const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
 const limit = '&limit=10&offset=0';
 const $icon = document.querySelector('.icon');
-// const $fwrdArrow = document.querySelector('.forward-arrow');
 const $backArrow = document.querySelector('.back-arrow');
 const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
-// const $entryView = document.querySelector('[data-view=entries]');
-// const $formView = document.querySelector('[data-view=entry-form]');
-// const $form = document.querySelector('#form');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
 
@@ -51,10 +47,9 @@ function getBookData(event) {
       const cover = book.cover_i;
       const hersheyUrl = searchUrl + cover + urlSuffix;
       // conditional statement filters out incomplete search results and behaves normally for results with all info present
-      if (cover === undefined || title === undefined || author === undefined) {
-        // eslint-disable-next-line no-console
-        console.log('hello world');
-      } else {
+      if (
+        !(cover === undefined || title === undefined || author === undefined)
+      ) {
         // creates elements for DOM tree
         const $tableRow = document.createElement('tr');
         $tableRow.className = 'results-row';
@@ -64,6 +59,7 @@ function getBookData(event) {
         $tableAuthor.className = 'author';
         const $tableImg = document.createElement('img');
         $tableImg.setAttribute('src', hersheyUrl);
+        $tableImg.setAttribute('alt', 'book cover image');
         $tableImg.className = 'table-image cover-image';
 
         // assigns appropriate values
