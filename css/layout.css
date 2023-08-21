@@ -1,0 +1,18 @@
+.container {
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full,
+.column-half {
+  width: 100%;
+}
+
+#query {
+  border-radius: 4%;
+}
