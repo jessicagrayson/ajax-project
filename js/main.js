@@ -115,6 +115,7 @@ function toggleTable(event) {
   $entriesTable.classList.remove('hidden');
   $searchBar.classList.add('hidden');
   $icon.classList.add('hidden');
+  $icon.style.display = 'none';
   // displays the arrows
   $arrowContainer.style.display = 'flex';
 }
@@ -124,6 +125,7 @@ function toggleSearch(event) {
   $searchBar.classList.remove('hidden');
   $entriesTable.classList.add('hidden');
   $arrowContainer.style.display = 'none';
+  $icon.style.display = 'inline';
 }
 
 // event listener for back arrow, triggers toggleSearch function
