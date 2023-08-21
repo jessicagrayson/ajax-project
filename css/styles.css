@@ -81,12 +81,14 @@ h2 {
 .results-row:hover {
   color: #0a9396;
   transition: color 0.2s ease-in;
+}
 
-  /* later add a border/box-shadow when an option is "clicked" or selected */
+.results-row:focus {
+  background-color: pink;
 }
 
 .arrow-container {
-  display: flex;
+  display: none;
   justify-content: space-between;
 }
 

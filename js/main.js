@@ -115,15 +115,15 @@ function toggleTable(event) {
   $entriesTable.classList.remove('hidden');
   $searchBar.classList.add('hidden');
   $icon.classList.add('hidden');
+  // displays the arrows
+  $arrowContainer.style.display = 'flex';
 }
 
 // function that reverts to search bar view
 function toggleSearch(event) {
   $searchBar.classList.remove('hidden');
   $entriesTable.classList.add('hidden');
-  // Not able to hide/display font awesome using DOM?
-  $arrowContainer.classList.add('hidden');
-  $icon.classList.add('hidden');
+  $arrowContainer.style.display = 'none';
 }
 
 // event listener for back arrow, triggers toggleSearch function
