@@ -39,11 +39,12 @@ function getBookData(event) {
     const results = response.docs;
     //  removes existing entries from the table before next search
     const existingEntries = document.querySelectorAll('.results-row');
+
+    // initiates loop that iterates over each book object in the results array obtainedfrom the API response
     existingEntries.forEach(function (entry) {
       entry.remove();
     });
-
-    // initiates loop that iterates over each book object in the results array obtainedfrom the API response
+    // assigns api search results to variables for later use
     results.forEach(function (book) {
       const title = book.title;
       const author = book.author_name;
@@ -126,6 +127,7 @@ function toggleSearch(event) {
   $entriesTable.classList.add('hidden');
   $arrowContainer.style.display = 'none';
   $icon.style.display = 'inline';
+  $searchBar.value = 'Search book title or author name';
 }
 
 // event listener for back arrow, triggers toggleSearch function
