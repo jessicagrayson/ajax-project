@@ -3,6 +3,7 @@ const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
 const limit = '&limit=10&offset=0';
 const $icon = document.querySelector('.icon');
+// const $fwrdArrow = document.querySelector('.forward-arrow');
 const $backArrow = document.querySelector('.back-arrow');
 const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
@@ -132,16 +133,24 @@ $backArrow.addEventListener('click', toggleSearch);
 
 // gets textContent from a clicked <td>
 function getTableData(event) {
+  const $selectedEntry = {};
   if (event.target.classList.contains('title')) {
     const titleText = event.target.textContent;
     alert(titleText);
+    $selectedEntry.title = titleText;
+    // console.log($selectedEntry);
   } else if (event.target.classList.contains('author')) {
     const authorText = event.target.textContent;
     alert(authorText);
+    $selectedEntry.author = authorText;
+    // console.log($selectedEntry);
   } else if (event.target.classList.contains('table-image')) {
     const imgUrl = event.target.getAttribute('src');
     alert(imgUrl);
+    $selectedEntry.cover = imgUrl;
+    // console.log($selectedEntry);
   }
+  // console.log($selectedEntry);
 }
 
 // event listener on entries table which calls getTableData
