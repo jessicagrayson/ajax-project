@@ -8,6 +8,7 @@ const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
+// const $tableRow = $entriesTable.querySelectorAll('tr');
 
 // array to store search results
 const currentResults = [];
@@ -128,3 +129,20 @@ function toggleSearch(event) {
 
 // event listener for back arrow, triggers toggleSearch function
 $backArrow.addEventListener('click', toggleSearch);
+
+// gets textContent from a clicked <td>
+function getTableData(event) {
+  if (event.target.classList.contains('title')) {
+    const titleText = event.target.textContent;
+    alert(titleText);
+  } else if (event.target.classList.contains('author')) {
+    const authorText = event.target.textContent;
+    alert(authorText);
+  } else if (event.target.classList.contains('table-image')) {
+    const imgUrl = event.target.getAttribute('src');
+    alert(imgUrl);
+  }
+}
+
+// event listener on entries table which calls getTableData
+$entriesTable.addEventListener('click', getTableData);
