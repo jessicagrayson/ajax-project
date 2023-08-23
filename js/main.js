@@ -46,7 +46,7 @@ function getBookData(event) {
       const title = book.title;
       const author = book.author_name;
       const cover = book.cover_i;
-      const hersheyUrl = searchUrl + cover + urlSuffix;
+      const coverUrl = searchUrl + cover + urlSuffix;
       // conditional statement filters out incomplete search results and behaves normally for results with all info present
       if (
         !(cover === undefined || title === undefined || author === undefined)
@@ -59,7 +59,7 @@ function getBookData(event) {
         const $tableAuthor = document.createElement('td');
         $tableAuthor.className = 'author';
         const $tableImg = document.createElement('img');
-        $tableImg.setAttribute('src', hersheyUrl);
+        $tableImg.setAttribute('src', coverUrl);
         $tableImg.setAttribute('alt', 'book cover image');
         $tableImg.className = 'table-image cover-image';
 
@@ -80,7 +80,7 @@ function getBookData(event) {
           title,
           author,
           // eslint-disable-next-line comma-dangle
-          hersheyUrl,
+          coverUrl,
         });
       }
     });
@@ -143,12 +143,13 @@ $entriesTable.addEventListener('click', function (event) {
       .querySelector('.cover-image')
       .getAttribute('src');
 
+    //
     const clickedBook = {
       title,
       author,
       // eslint-disable-next-line comma-dangle
       imageUrl,
     };
-    alert(clickedBook);
+    data.entries.push(clickedBook);
   }
 });
