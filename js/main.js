@@ -3,7 +3,7 @@ const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
 const limit = '&limit=10&offset=0';
 const $icon = document.querySelector('.icon');
-// const $fwrdArrow = document.querySelector('.forward-arrow');
+const $fwrdArrow = document.querySelector('.forward-arrow');
 const $backArrow = document.querySelector('.back-arrow');
 const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
@@ -12,6 +12,8 @@ const urlSuffix = '.jpg';
 
 // array to store search results
 const currentResults = [];
+// TESTING TESTING 123
+let clickedBook = {};
 
 // function handles search query from open library API
 function getBookData(event) {
@@ -144,7 +146,7 @@ $entriesTable.addEventListener('click', function (event) {
       .getAttribute('src');
 
     //
-    const clickedBook = {
+    clickedBook = {
       title,
       author,
       // eslint-disable-next-line comma-dangle
@@ -153,3 +155,20 @@ $entriesTable.addEventListener('click', function (event) {
     data.entries.push(clickedBook);
   }
 });
+
+// console.log(data.entries);
+
+// adds entryId to book object, increments nextEntryId, hides table
+function handleFwrd(event) {
+  if (clickedBook?.title && clickedBook?.author && clickedBook?.imageUrl) {
+    alert('handled!');
+    clickedBook.entryId = data.nextEntryId;
+    // console.log(clickedBook);
+    data.nextEntryId = data.nextEntryId + 1;
+    // console.log(data.nextEntryId);
+  }
+  // hides entries table
+  $entriesTable.classList.add('hidden');
+}
+// event listener for forward arrow, calls handleFwrd function
+$fwrdArrow.addEventListener('click', handleFwrd);
