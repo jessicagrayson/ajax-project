@@ -9,7 +9,6 @@ const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
-// const $tableRow = $entriesTable.querySelectorAll('tr');
 
 // array to store search results
 const currentResults = [];
@@ -80,7 +79,8 @@ function getBookData(event) {
         currentResults.push({
           title,
           author,
-          hersheyUrl
+          // eslint-disable-next-line comma-dangle
+          hersheyUrl,
         });
       }
     });
@@ -131,27 +131,24 @@ function toggleSearch(event) {
 // event listener for back arrow, triggers toggleSearch function
 $backArrow.addEventListener('click', toggleSearch);
 
-// gets textContent from a clicked <td>
-function getTableData(event) {
-  const $selectedEntry = {};
-  if (event.target.classList.contains('title')) {
-    const titleText = event.target.textContent;
-    alert(titleText);
-    $selectedEntry.title = titleText;
-    // console.log($selectedEntry);
-  } else if (event.target.classList.contains('author')) {
-    const authorText = event.target.textContent;
-    alert(authorText);
-    $selectedEntry.author = authorText;
-    // console.log($selectedEntry);
-  } else if (event.target.classList.contains('table-image')) {
-    const imgUrl = event.target.getAttribute('src');
-    alert(imgUrl);
-    $selectedEntry.cover = imgUrl;
-    // console.log($selectedEntry);
-  }
-  // console.log($selectedEntry);
-}
-
 // event listener on entries table which calls getTableData
-$entriesTable.addEventListener('click', getTableData);
+$entriesTable.addEventListener('click', function (event) {
+  // anonymous function to define object with book values
+  const clickedRow = event.target.closest('.results-row');
+
+  if (clickedRow) {
+    const title = clickedRow.querySelector('.title').textContent;
+    const author = clickedRow.querySelector('.author').textContent;
+    const imageUrl = clickedRow
+      .querySelector('.cover-image')
+      .getAttribute('src');
+
+    const clickedBook = {
+      title,
+      author,
+      // eslint-disable-next-line comma-dangle
+      imageUrl,
+    };
+    alert(clickedBook);
+  }
+});
