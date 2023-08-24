@@ -185,5 +185,34 @@ function handleFwrd(event) {
   $entriesTable.classList.add('hidden');
 
 }
-// event listener for forward arrow, calls handleFwrd function
-$fwrdArrow.addEventListener('click', handleFwrd);
+// event listener for save button, calls handleFwrd function
+$saveBtn.addEventListener('click', handleFwrd);
+
+// TESTING TESTING 123
+
+// function renderEntry(entry) {
+// // creates element of DOM tree:
+//   const $listItem = document.createElement('li');
+//   $listItem.className = 'user-entry';
+//   const $row = document.createElement('div');
+//   $row.className = 'entry-row';
+//   const $imgColumn = document.createElement('div');
+//   $imgColumn.className = 'column-half image-column';
+//   const $img = document.createElement('img');
+//   $img.className = 'entry-img';
+//   // BELOW WILL NEED TO BE UPDATED
+//   $img.setAttribute('src', entry.url);
+//   const $textColumn = document.createElement('div');
+//   $textColumn.className = 'column-half text-column';
+//   const $title = document.createElement('h2');
+//   $title.className = 'entry-title';
+//   $title.textContent = entry.title;
+//   const $notes = document.createElement('p');
+//   $notes.className = 'entry-notes';
+//   $notes.textContent = entry.notes;
+
+//   // append DOM nodes to tree NEED TO CREATE UL
+//   $list.appendChild($listItem);
+
+// // appends li to ul and returns li with child elements
+// }
