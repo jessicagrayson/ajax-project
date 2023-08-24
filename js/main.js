@@ -9,6 +9,7 @@ const $arrowContainer = document.querySelector('.arrow-container');
 const $entriesTable = document.querySelector('.entries-table');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
+const $saveBtn = document.querySelector('.save-button');
 
 // array to store search results
 const currentResults = [];
@@ -161,8 +162,10 @@ $entriesTable.addEventListener('click', function (event) {
     if (row !== clickedRow) {
       row.style.display = 'none';
     }
-    // PROBLEMO: also hides save button -_-
-    $arrowContainer.style.display = 'none';
+    // hides forward arrow
+    $fwrdArrow.style.display = 'none';
+    // displays save button
+    $saveBtn.style.display = 'flex';
   });
 
 });
@@ -180,6 +183,7 @@ function handleFwrd(event) {
   }
   // hides entries table
   $entriesTable.classList.add('hidden');
+
 }
 // event listener for forward arrow, calls handleFwrd function
 $fwrdArrow.addEventListener('click', handleFwrd);
