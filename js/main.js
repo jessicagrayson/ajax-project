@@ -145,7 +145,7 @@ $entriesTable.addEventListener('click', function (event) {
       .querySelector('.cover-image')
       .getAttribute('src');
 
-    //
+    // creates an object from book that has been selected
     clickedBook = {
       title,
       author,
@@ -154,6 +154,17 @@ $entriesTable.addEventListener('click', function (event) {
     };
     data.entries.push(clickedBook);
   }
+
+  // hide all other rows after one row is clicked
+  const $allRows = document.querySelectorAll('.results-row');
+  $allRows.forEach(row => {
+    if (row !== clickedRow) {
+      row.style.display = 'none';
+    }
+    // PROBLEMO: also hides save button -_-
+    $arrowContainer.style.display = 'none';
+  });
+
 });
 
 // console.log(data.entries);
