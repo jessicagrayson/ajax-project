@@ -212,8 +212,8 @@ function renderEntries(entry) {
   $textColumn.appendChild($title);
   $textColumn.appendChild($authorName);
 
-  // appends li to ul and returns li with child elements
-  $list.appendChild($listItem);
+  // prepends li to ul and returns li with child elements
+  $list.prepend($listItem);
   return $listItem;
 }
 
@@ -256,6 +256,8 @@ function viewSwap(viewName) {
 $saveBtn.addEventListener('click', function () {
   viewSwap('entries');
   handleFwrd();
+  // reloads page while staying on current view
+  location.reload();
 });
 
 // nav link swaps view
