@@ -10,6 +10,7 @@ const $entriesTable = document.querySelector('.entries-table');
 const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
 const $saveBtn = document.querySelector('.save-button');
+const $list = document.querySelector('.entries-list');
 
 // array to store search results
 const currentResults = [];
@@ -85,6 +86,8 @@ function getBookData(event) {
           // eslint-disable-next-line comma-dangle
           coverUrl,
         });
+        // renderEntries(data.entries);
+        // console.log('test:', data.entries);
       }
     });
   });
@@ -154,6 +157,7 @@ $entriesTable.addEventListener('click', function (event) {
       imageUrl,
     };
     data.entries.push(clickedBook);
+    // console.log('data entries:', data.entries);
   }
 
   // hide all other rows after one row is clicked
@@ -180,6 +184,8 @@ function handleFwrd(event) {
     // console.log(clickedBook);
     data.nextEntryId = data.nextEntryId + 1;
     // console.log(data.nextEntryId);
+    data.entries.push(clickedBook);
+    renderEntries(clickedBook);
   }
   // hides entries table
   $entriesTable.classList.add('hidden');
@@ -190,29 +196,43 @@ $saveBtn.addEventListener('click', handleFwrd);
 
 // TESTING TESTING 123
 
-// function renderEntry(entry) {
-// // creates element of DOM tree:
-//   const $listItem = document.createElement('li');
-//   $listItem.className = 'user-entry';
-//   const $row = document.createElement('div');
-//   $row.className = 'entry-row';
-//   const $imgColumn = document.createElement('div');
-//   $imgColumn.className = 'column-half image-column';
-//   const $img = document.createElement('img');
-//   $img.className = 'entry-img';
-//   // BELOW WILL NEED TO BE UPDATED
-//   $img.setAttribute('src', entry.url);
-//   const $textColumn = document.createElement('div');
-//   $textColumn.className = 'column-half text-column';
-//   const $title = document.createElement('h2');
-//   $title.className = 'entry-title';
-//   $title.textContent = entry.title;
-//   const $notes = document.createElement('p');
-//   $notes.className = 'entry-notes';
-//   $notes.textContent = entry.notes;
+function renderEntries(entry) {
+// creates element of DOM tree:
+  const $listItem = document.createElement('li');
+  $listItem.className = 'user-entry';
+  const $row = document.createElement('div');
+  $row.className = 'row entry-row';
+  const $imgColumn = document.createElement('div');
+  $imgColumn.className = 'column-half image-column';
+  // NOTE TO JESS BELOW WILL NEED TO BE ADJUSTED FOR PROPER URL
+  const $img = document.createElement('img');
+  $img.setAttribute('src', entry.imageUrl);
+  $img.className = 'entry-img';
+  // ABOVE WILL NEED TO BE ADJUSTED FOR PROPER URL
+  const $textColumn = document.createElement('div');
+  $textColumn.className = 'column-half text-column';
+  const $title = document.createElement('h2');
+  $title.className = 'entry-title';
+  $title.textContent = entry.title;
+  const $authorName = document.createElement('h2');
+  $authorName.className = 'entry-author';
+  $authorName.textContent = entry.author;
 
-//   // append DOM nodes to tree NEED TO CREATE UL
-//   $list.appendChild($listItem);
+  // append DOM nodes to tree
+  $listItem.appendChild($row);
+  $row.appendChild($imgColumn);
+  $imgColumn.appendChild($img);
+  $row.appendChild($textColumn);
+  $textColumn.appendChild($title);
+  $textColumn.appendChild($authorName);
 
-// // appends li to ul and returns li with child elements
-// }
+  // appends li to ul and returns li with child elements
+  $list.appendChild($listItem);
+  return $listItem;
+}
+
+// TESTTESTTESTETES
+$saveBtn.addEventListener('click', function () {
+  $entriesTable.classList.add('hidden');
+
+});
