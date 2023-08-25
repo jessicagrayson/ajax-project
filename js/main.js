@@ -228,6 +228,15 @@ function arrayLoop(array) {
 // initiates arrayLoop function
 document.addEventListener('DOMContentLoaded', function () {
   arrayLoop(data.entries);
+
+  // retrieves store view state from localStorage
+  const storedView = localStorage.getItem('currentView');
+  // sets initial view based on stored state
+  if (storedView === 'entry-form') {
+    viewSwap('entry-form');
+  } else {
+    viewSwap('entries');
+  }
 });
 
 // viewSwap function
@@ -250,6 +259,8 @@ function viewSwap(viewName) {
     // changes nav link text to "new entry"
     $navLink.textContent = 'New Entry';
   }
+  // store current view state in localStorage
+  localStorage.setItem('currentView', viewName);
 }
 
 // save button swaps view, captures data from clicked result
