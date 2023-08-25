@@ -1,8 +1,4 @@
 // dom queries
-const $searchBar = document.querySelector('#query');
-const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
-const limit = '&limit=10&offset=0';
-const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const $icon = document.querySelector('.icon');
 const $fwrdArrow = document.querySelector('.forward-arrow');
 const $backArrow = document.querySelector('.back-arrow');
@@ -15,10 +11,15 @@ const $entriesView = document.querySelector('[data-view=entries]');
 const $formView = document.querySelector('[data-view=entry-form]');
 const $navLink = document.querySelector('.nav-link');
 
+// AJAX PRESENTATION CODE
+// dom queries - API search terms
+const $searchBar = document.querySelector('#query');
+const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
+const limit = '&limit=10&offset=0';
+const searchUrl = 'https://covers.openlibrary.org/b/id/';
+
 // array to store search results
 const currentResults = [];
-// empty object - used in getBookData
-let clickedBook = {};
 
 // function handles search query from open library API
 function getBookData(event) {
@@ -100,6 +101,8 @@ function getBookData(event) {
   xhr.send();
 }
 
+// END AJAX CODE
+
 // click event for magnifying glass icon - submits form and toggles search results table
 $icon.addEventListener('click', function () {
   toggleTable(event);
@@ -132,6 +135,9 @@ function toggleSearch(event) {
   $icon.style.display = 'inline';
   $searchBar.value = 'Search book title or author name';
 }
+
+// empty object - used in getBookData
+let clickedBook = {};
 
 // event listener for back arrow, triggers toggleSearch function
 $backArrow.addEventListener('click', toggleSearch);
