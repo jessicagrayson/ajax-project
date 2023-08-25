@@ -259,4 +259,11 @@ $saveBtn.addEventListener('click', function () {
 });
 
 // nav link swaps view
-$navLink.addEventListener('click', viewSwap('entry-form'));
+$navLink.addEventListener('click', function (event) {
+  event.preventDefault();
+  if (data.view === 'entry-form') {
+    viewSwap('entries');
+  } else if (data.view === 'entries') {
+    viewSwap('entry-form');
+  }
+});
