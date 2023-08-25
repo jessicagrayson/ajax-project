@@ -14,7 +14,7 @@ const $list = document.querySelector('.entries-list');
 
 // array to store search results
 const currentResults = [];
-// TESTING TESTING 123
+// empty object - used in getBookData
 let clickedBook = {};
 
 // function handles search query from open library API
@@ -86,8 +86,6 @@ function getBookData(event) {
           // eslint-disable-next-line comma-dangle
           coverUrl,
         });
-        // renderEntries(data.entries);
-        // console.log('test:', data.entries);
       }
     });
   });
@@ -156,8 +154,8 @@ $entriesTable.addEventListener('click', function (event) {
       // eslint-disable-next-line comma-dangle
       imageUrl,
     };
-    data.entries.push(clickedBook);
-    // console.log('data entries:', data.entries);
+    // pushes a selected book into the data.entries array
+    // data.entries.push(clickedBook);
   }
 
   // hide all other rows after one row is clicked
@@ -174,18 +172,13 @@ $entriesTable.addEventListener('click', function (event) {
 
 });
 
-// console.log(data.entries);
-
-// adds entryId to book object, increments nextEntryId, hides table
 function handleFwrd(event) {
   if (clickedBook?.title && clickedBook?.author && clickedBook?.imageUrl) {
-    alert('handled!');
+
     clickedBook.entryId = data.nextEntryId;
-    // console.log(clickedBook);
     data.nextEntryId = data.nextEntryId + 1;
-    // console.log(data.nextEntryId);
     data.entries.push(clickedBook);
-    renderEntries(clickedBook);
+    // renderEntries(clickedBook);
   }
   // hides entries table
   $entriesTable.classList.add('hidden');
@@ -194,8 +187,7 @@ function handleFwrd(event) {
 // event listener for save button, calls handleFwrd function
 $saveBtn.addEventListener('click', handleFwrd);
 
-// TESTING TESTING 123
-
+// creates DOM tree for a selected book
 function renderEntries(entry) {
 // creates element of DOM tree:
   const $listItem = document.createElement('li');
@@ -204,11 +196,9 @@ function renderEntries(entry) {
   $row.className = 'row entry-row';
   const $imgColumn = document.createElement('div');
   $imgColumn.className = 'column-half image-column';
-  // NOTE TO JESS BELOW WILL NEED TO BE ADJUSTED FOR PROPER URL
   const $img = document.createElement('img');
   $img.setAttribute('src', entry.imageUrl);
   $img.className = 'entry-img';
-  // ABOVE WILL NEED TO BE ADJUSTED FOR PROPER URL
   const $textColumn = document.createElement('div');
   $textColumn.className = 'column-half text-column';
   const $title = document.createElement('h2');
@@ -231,13 +221,15 @@ function renderEntries(entry) {
   return $listItem;
 }
 
-// TESTTESTTESTETES
+// save button hides entries table ADD MORE STUFF HERSHEY
 $saveBtn.addEventListener('click', function () {
+  // reloads page upon click
+  location.reload();
   $entriesTable.classList.add('hidden');
 
 });
 
-// testLOOP
+// loop iterates through data.entries and creates a DOM tree for each entry
 function arrayLoop(array) {
   for (let i = 0; i < array.length; i++) {
     const entry = array[i];
@@ -245,7 +237,7 @@ function arrayLoop(array) {
   }
 }
 
-// test listener
+// initiates arrayLoop function
 document.addEventListener('DOMContentLoaded', function () {
   arrayLoop(data.entries);
 });
