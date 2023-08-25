@@ -11,6 +11,9 @@ const searchUrl = 'https://covers.openlibrary.org/b/id/';
 const urlSuffix = '.jpg';
 const $saveBtn = document.querySelector('.save-button');
 const $list = document.querySelector('.entries-list');
+const $entriesView = document.querySelector('[data-view=entries]');
+const $formView = document.querySelector('[data-view=entry-form]');
+const $navLink = document.querySelector('.nav-link');
 
 // array to store search results
 const currentResults = [];
@@ -76,8 +79,6 @@ function getBookData(event) {
         $tableRow.appendChild($tableImg);
         $tableRow.appendChild($tableTitle);
         $tableRow.appendChild($tableAuthor);
-
-        // creates specific condition
 
         // adds current results to array
         currentResults.push({
@@ -154,8 +155,6 @@ $entriesTable.addEventListener('click', function (event) {
       // eslint-disable-next-line comma-dangle
       imageUrl,
     };
-    // pushes a selected book into the data.entries array
-    // data.entries.push(clickedBook);
   }
 
   // hide all other rows after one row is clicked
@@ -178,14 +177,11 @@ function handleFwrd(event) {
     clickedBook.entryId = data.nextEntryId;
     data.nextEntryId = data.nextEntryId + 1;
     data.entries.push(clickedBook);
-    // renderEntries(clickedBook);
   }
   // hides entries table
   $entriesTable.classList.add('hidden');
 
 }
-// event listener for save button, calls handleFwrd function
-$saveBtn.addEventListener('click', handleFwrd);
 
 // creates DOM tree for a selected book
 function renderEntries(entry) {
@@ -221,14 +217,6 @@ function renderEntries(entry) {
   return $listItem;
 }
 
-// save button hides entries table ADD MORE STUFF HERSHEY
-$saveBtn.addEventListener('click', function () {
-  // reloads page upon click
-  location.reload();
-  $entriesTable.classList.add('hidden');
-
-});
-
 // loop iterates through data.entries and creates a DOM tree for each entry
 function arrayLoop(array) {
   for (let i = 0; i < array.length; i++) {
@@ -241,3 +229,34 @@ function arrayLoop(array) {
 document.addEventListener('DOMContentLoaded', function () {
   arrayLoop(data.entries);
 });
+
+// viewSwap function
+function viewSwap(viewName) {
+  if (viewName === 'entry-form') {
+    $entriesTable.classList.add('hidden');
+    $entriesView.classList.add('hidden');
+    $saveBtn.classList.add('hidden');
+    $formView.classList.remove('hidden');
+    data.view = 'entry-form';
+    // changes nav link text to "entries"
+    $navLink.textContent = 'Entries';
+
+  } else if (viewName === 'entries') {
+    $entriesTable.classList.add('hidden');
+    $entriesView.classList.remove('hidden');
+    $saveBtn.classList.remove('hidden');
+    $formView.classList.add('hidden');
+    data.view = 'entries';
+    // changes nav link text to "new entry"
+    $navLink.textContent = 'New Entry';
+  }
+}
+
+// save button swaps view, captures data from clicked result
+$saveBtn.addEventListener('click', function () {
+  viewSwap('entries');
+  handleFwrd();
+});
+
+// nav link swaps view
+$navLink.addEventListener('click', viewSwap('entry-form'));
