@@ -133,3 +133,13 @@ h2 {
     margin-right: 1rem;
   }
 }
+
+/* entries table */
+.entries-list {
+  background-color: pink;
+  list-style-type: none;
+}
+
+.entry-img {
+  width: 50%;
+}

@@ -236,3 +236,16 @@ $saveBtn.addEventListener('click', function () {
   $entriesTable.classList.add('hidden');
 
 });
+
+// testLOOP
+function arrayLoop(array) {
+  for (let i = 0; i < array.length; i++) {
+    const entry = array[i];
+    renderEntries(entry);
+  }
+}
+
+// test listener
+document.addEventListener('DOMContentLoaded', function () {
+  arrayLoop(data.entries);
+});
