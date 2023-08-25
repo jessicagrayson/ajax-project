@@ -25,7 +25,7 @@ h4 {
 }
 
 h2 {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .search-row {
@@ -108,7 +108,7 @@ h2 {
   display: none;
   background-color: #ebf2fa;
   color: #0a9396;
-  border: 0.13rem solid #0a9396;
+  border: 0.15rem solid #0a9396;
   border-radius: 5%;
   width: 5rem;
   height: 1.7rem;
@@ -136,10 +136,17 @@ h2 {
 
 /* entries table */
 .entries-list {
-  background-color: pink;
   list-style-type: none;
+}
+
+.text-column {
+  font-size: 0.8rem;
 }
 
 .entry-img {
   width: 50%;
+}
+
+.user-entry {
+  margin-bottom: 0.5rem;
 }
