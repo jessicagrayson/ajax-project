@@ -11,7 +11,7 @@ const $entriesView = document.querySelector('[data-view=entries]');
 const $formView = document.querySelector('[data-view=entry-form]');
 const $navLink = document.querySelector('.nav-link');
 
-// AJAX PRESENTATION CODE
+// AJAX PRESENTATION CODE START
 // dom queries - API search terms
 const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
@@ -235,13 +235,14 @@ function arrayLoop(array) {
 document.addEventListener('DOMContentLoaded', function () {
   arrayLoop(data.entries);
 
-  // retrieves store view state from localStorage
+  // retrieves stored view state from localStorage
   const storedView = localStorage.getItem('currentView');
   // sets initial view based on stored state
   if (storedView === 'entry-form') {
     viewSwap('entry-form');
   } else {
     viewSwap('entries');
+    toggleNoEntries();
   }
 });
 
@@ -269,6 +270,14 @@ function viewSwap(viewName) {
   localStorage.setItem('currentView', viewName);
 }
 
+// conditionally toggles "no entries message" - displays when no entries saved in localStorage
+function toggleNoEntries() {
+  const $noEntries = document.querySelector('.no-entries-message');
+  if (data.entries.length > 0) {
+    $noEntries.classList.add('hidden');
+
+  }
+}
 // save button swaps view, captures data from clicked result
 $saveBtn.addEventListener('click', function () {
   viewSwap('entries');
@@ -282,6 +291,7 @@ $navLink.addEventListener('click', function (event) {
   event.preventDefault();
   if (data.view === 'entry-form') {
     viewSwap('entries');
+    toggleNoEntries();
   } else if (data.view === 'entries') {
     viewSwap('entry-form');
   }
