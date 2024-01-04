@@ -10,9 +10,6 @@ const $list = document.querySelector('.entries-list');
 const $entriesView = document.querySelector('[data-view=entries]');
 const $formView = document.querySelector('[data-view=entry-form]');
 const $navLink = document.querySelector('.nav-link');
-
-// AJAX PRESENTATION CODE START
-// dom queries - API search terms
 const $searchBar = document.querySelector('#query');
 const $apiEndpoint = 'https://openlibrary.org/search.json?q=';
 const limit = '&limit=10&offset=0';
@@ -55,7 +52,7 @@ function getBookData(event) {
       const author = book.author_name;
       const cover = book.cover_i;
       const coverUrl = searchUrl + cover + urlSuffix;
-      // conditional statement filters out incomplete search results and behaves normally for results with all info present
+      // conditional statement filters out incomplete search results - behaves normally for results with all info present
       if (
         !(cover === undefined || title === undefined || author === undefined)
       ) {
@@ -100,8 +97,6 @@ function getBookData(event) {
   // sends request to the server at the URL specified in xhr.open()
   xhr.send();
 }
-
-// END AJAX CODE
 
 // click event for magnifying glass icon - submits form and toggles search results table
 $icon.addEventListener('click', function () {
